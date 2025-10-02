@@ -1,0 +1,152 @@
+'use client';
+
+import { motion } from 'framer-motion';
+import Image from 'next/image';
+import { FaXTwitter, FaCopy, FaCheck } from 'react-icons/fa6';
+import { useState } from 'react';
+import { CONTRACT_ADDRESS, TICKER, PROJECT_NAME, X_COMMUNITY_LINK, DEXTOOLS_LINK, DEXSCREENER_LINK } from '@/lib/config';
+
+export default function Hero() {
+  const [copied, setCopied] = useState(false);
+
+  const handleCopyCA = async () => {
+    await navigator.clipboard.writeText(CONTRACT_ADDRESS);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
+  return (
+    <div className="relative z-10 flex flex-col items-center justify-center h-full gap-8">
+      {/* Logo/Image */}
+      <motion.div
+        className="relative w-48 h-48 md:w-64 md:h-64 rounded-full overflow-hidden border-4 border-[#00ff41] shadow-[0_0_40px_rgba(0,255,65,0.3)]"
+        initial={{ scale: 0, rotate: -180 }}
+        animate={{ scale: 1, rotate: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+      >
+        <Image 
+          src="/pepeimage.png" 
+          alt="Pumpfun Pepe" 
+          fill
+          className="object-cover"
+          priority
+        />
+      </motion.div>
+
+      {/* Title */}
+      <motion.div
+        className="text-center"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.3, duration: 0.6 }}
+      >
+        <h1 className="text-6xl md:text-8xl font-black text-white mb-2 tracking-tight">
+          {PROJECT_NAME}
+        </h1>
+        <p className="text-3xl md:text-4xl font-bold text-[#00ff41] tracking-wider">
+          {TICKER}
+        </p>
+      </motion.div>
+
+      {/* Tagline */}
+      <motion.p
+        className="text-xl md:text-2xl text-gray-300 max-w-2xl text-center px-4 font-light"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.6, duration: 0.6 }}
+      >
+        Every normie who makes an account starts here. <br />
+        <span className="text-gray-400 text-lg">The blank slate. The face of every beginning.</span>
+      </motion.p>
+
+      {/* CTA Buttons */}
+      <motion.div
+        className="flex flex-col gap-4 mt-4"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.9, duration: 0.6 }}
+      >
+        {/* Top Row - Main Actions */}
+        <div className="flex flex-col md:flex-row gap-4">
+          <button
+            onClick={handleCopyCA}
+            className="group relative px-8 py-4 bg-[#00ff41] text-black font-bold text-lg rounded-lg hover:bg-[#00cc34] transition-all duration-300 shadow-lg hover:shadow-[0_0_30px_rgba(0,255,65,0.5)] flex items-center justify-center gap-3"
+          >
+            {copied ? (
+              <>
+                <FaCheck className="w-5 h-5" />
+                COPIED!
+              </>
+            ) : (
+              <>
+                <FaCopy className="w-5 h-5" />
+                COPY CA
+              </>
+            )}
+          </button>
+
+          <a
+            href={X_COMMUNITY_LINK}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-8 py-4 bg-transparent border-2 border-[#00ff41] text-[#00ff41] font-bold text-lg rounded-lg hover:bg-[#00ff41]/10 transition-all duration-300 flex items-center justify-center gap-3"
+          >
+            <FaXTwitter className="w-5 h-5" />
+            JOIN COMMUNITY
+          </a>
+        </div>
+
+        {/* Bottom Row - DEX Links */}
+        <div className="flex flex-col md:flex-row gap-4">
+          <a
+            href={DEXTOOLS_LINK}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-6 py-3 bg-transparent border-2 border-gray-600 text-white font-semibold text-base rounded-lg hover:border-[#00ff41] hover:text-[#00ff41] transition-all duration-300 flex items-center justify-center gap-3 group"
+          >
+            <div className="relative w-6 h-6">
+              <Image 
+                src="/dextoolslogo.svg" 
+                alt="DexTools" 
+                fill
+                className="object-contain"
+              />
+            </div>
+            <span>DexTools</span>
+          </a>
+
+          <a
+            href={DEXSCREENER_LINK}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-6 py-3 bg-transparent border-2 border-gray-600 text-white font-semibold text-base rounded-lg hover:border-[#00ff41] hover:text-[#00ff41] transition-all duration-300 flex items-center justify-center gap-3 group"
+          >
+            <div className="relative w-6 h-6">
+              <Image 
+                src="/dexlogo.jpg" 
+                alt="DexScreener" 
+                fill
+                className="object-contain rounded"
+              />
+            </div>
+            <span>DexScreener</span>
+          </a>
+        </div>
+      </motion.div>
+
+      {/* Contract Address Display */}
+      <motion.div
+        className="mt-8 px-6 py-3 bg-black/50 border border-gray-700 rounded-lg backdrop-blur-sm"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.2, duration: 0.6 }}
+      >
+        <p className="text-gray-400 text-xs uppercase tracking-wider mb-1">Contract Address</p>
+        <p className="text-white font-mono text-sm md:text-base break-all">
+          {CONTRACT_ADDRESS}
+        </p>
+      </motion.div>
+    </div>
+  );
+}
+
