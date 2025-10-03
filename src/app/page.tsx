@@ -3,7 +3,8 @@
 import FloatingComment from '@/components/FloatingComment';
 import Hero from '@/components/Hero';
 import CursorTrail from '@/components/CursorTrail';
-import { useMemo } from 'react';
+import Loader from '@/components/Loader';
+import { useMemo, useState, useEffect } from 'react';
 
 const normieComments = [
   "This sends",
@@ -46,9 +47,24 @@ const generateRandomLikes = () => {
 };
 
 export default function Home() {
+  const [isLoading, setIsLoading] = useState(true);
+
+  // Hide loader after 2.5 seconds
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 2500);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   // Generate comment props once on mount to avoid hydration issues
   const comments = useMemo(() => {
-    return normieComments.map((comment, index) => ({
+    // Show fewer comments on mobile
+    const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+    const commentsToShow = isMobile ? normieComments.slice(0, 10) : normieComments;
+    
+    return commentsToShow.map((comment, index) => ({
       text: comment,
       username: generateRandomAddress(),
       likes: generateRandomLikes(),
@@ -60,12 +76,16 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="relative w-full h-screen overflow-hidden bg-gradient-to-br from-[#0a0e17] via-[#15202b] to-[#0a0e17]">
-      {/* Cursor Trail Effect */}
-      <CursorTrail />
+    <>
+      <Loader isLoading={isLoading} />
+    <main className="relative w-full min-h-screen overflow-x-hidden overflow-y-auto bg-gradient-to-br from-[#0a0e17] via-[#15202b] to-[#0a0e17]">
+      {/* Cursor Trail Effect - Hide on mobile */}
+      <div className="hidden md:block">
+        <CursorTrail />
+      </div>
       
       {/* Animated Background Grid */}
-      <div className="absolute inset-0 bg-[linear-gradient(rgba(0,255,65,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(0,255,65,0.05)_1px,transparent_1px)] bg-[size:50px_50px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_50%,black,transparent)]" />
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(0,255,65,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(0,255,65,0.05)_1px,transparent_1px)] bg-[size:50px_50px] md:bg-[size:50px_50px] bg-[size:30px_30px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_50%,black,transparent)]" />
       
       {/* Floating Comments Layer */}
       <div className="absolute inset-0 pointer-events-none">
@@ -84,13 +104,14 @@ export default function Home() {
       </div>
 
       {/* Main Hero Content */}
-      <div className="relative z-10 w-full h-full flex items-center justify-center px-4">
+      <div className="relative z-10 w-full min-h-screen flex items-center justify-center px-4 py-8">
         <Hero />
       </div>
 
       {/* Glow Effects */}
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#00ff41] opacity-10 blur-[120px] rounded-full pointer-events-none" />
-      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#00ff41] opacity-10 blur-[120px] rounded-full pointer-events-none" />
+      <div className="absolute top-1/4 left-1/4 w-64 h-64 md:w-96 md:h-96 bg-[#00ff41] opacity-10 blur-[120px] rounded-full pointer-events-none" />
+      <div className="absolute bottom-1/4 right-1/4 w-64 h-64 md:w-96 md:h-96 bg-[#00ff41] opacity-10 blur-[120px] rounded-full pointer-events-none" />
     </main>
+    </>
   );
 }

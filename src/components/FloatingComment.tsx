@@ -17,7 +17,7 @@ interface FloatingCommentProps {
 export default function FloatingComment({ text, username, likes, delay, duration, startX, startY }: FloatingCommentProps) {
   return (
     <motion.div
-      className="absolute flex items-start gap-3 bg-[#15202b]/80 backdrop-blur-sm rounded-lg p-3 border border-gray-700/50 shadow-xl max-w-xs"
+      className="absolute flex items-start gap-2 sm:gap-3 bg-[#15202b]/80 backdrop-blur-sm rounded-lg p-2 sm:p-3 border border-gray-700/50 shadow-xl max-w-[200px] sm:max-w-xs"
       style={{ left: `${startX}%`, top: `${startY}%` }}
       initial={{ opacity: 0, y: 20, scale: 0.8 }}
       animate={{ 
@@ -33,7 +33,7 @@ export default function FloatingComment({ text, username, likes, delay, duration
         ease: "easeInOut"
       }}
     >
-      <div className="relative w-10 h-10 flex-shrink-0 rounded-full overflow-hidden border-2 border-gray-600">
+      <div className="relative w-8 h-8 sm:w-10 sm:h-10 flex-shrink-0 rounded-full overflow-hidden border-2 border-gray-600">
         <Image 
           src="/pepeimage.png" 
           alt="Normie Pepe" 
@@ -41,13 +41,13 @@ export default function FloatingComment({ text, username, likes, delay, duration
           className="object-cover"
         />
       </div>
-      <div className="flex flex-col flex-1">
-        <span className="text-gray-400 text-xs font-semibold">{username}</span>
-        <p className="text-white text-sm font-medium mt-1">{text}</p>
-        <div className="flex items-center gap-3 mt-2">
+      <div className="flex flex-col flex-1 min-w-0">
+        <span className="text-gray-400 text-xs font-semibold truncate">{username}</span>
+        <p className="text-white text-xs sm:text-sm font-medium mt-1 line-clamp-2">{text}</p>
+        <div className="flex items-center gap-2 sm:gap-3 mt-1 sm:mt-2">
           <span className="text-gray-500 text-xs hover:text-gray-400 cursor-pointer">Reply</span>
           <div className="flex items-center gap-1">
-            <FaHeart className="w-3 h-3 text-gray-500" />
+            <FaHeart className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-gray-500" />
             <span className="text-gray-500 text-xs">{likes}</span>
           </div>
         </div>
