@@ -96,11 +96,11 @@ export default function PFPGenerator({ onClose }: PFPGeneratorProps) {
     try {
       // Load all images
       const [bgImage, baseImage, clothesImage, dotdotdotImage, headAccessoryImage] = await Promise.all([
-        loadImage(`/background/${bg}`),
-        loadImage(`/base/${ASSETS.base}`),
-        loadImage(`/clothes/${clothes}`),
-        loadImage(`/dotdotdot/${dotdotdot}`),
-        loadImage(`/head accessories/${headAccessory}`),
+        loadImage(`/Background/${bg}`),
+        loadImage(`/Base/${ASSETS.base}`),
+        loadImage(`/Clothes/${clothes}`),
+        loadImage(`/DotDotDot/${dotdotdot}`),
+        loadImage(`/Head Accessories/${headAccessory}`),
       ]);
 
       // Create canvas and composite images
@@ -360,7 +360,7 @@ export default function PFPGenerator({ onClose }: PFPGeneratorProps) {
                     >
                       <div className="absolute inset-0 bg-gradient-to-br from-gray-800 to-gray-900">
                         <img
-                          src={`/${activeTab === 'headAccessories' ? 'head accessories' : activeTab}/${asset}`}
+                          src={`/${activeTab === 'background' ? 'Background' : activeTab === 'clothes' ? 'Clothes' : activeTab === 'dotdotdot' ? 'DotDotDot' : 'Head Accessories'}/${asset}`}
                           alt={asset.replace('.png', '')}
                           className="w-full h-full object-cover"
                         />
