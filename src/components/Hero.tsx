@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { FaXTwitter, FaCopy, FaCheck } from 'react-icons/fa6';
 import { useState } from 'react';
-import { CONTRACT_ADDRESS, TICKER, PROJECT_NAME, X_COMMUNITY_LINK, DEXTOOLS_LINK, DEXSCREENER_LINK } from '@/lib/config';
+import { CONTRACT_ADDRESS, TICKER, PROJECT_NAME, X_COMMUNITY_LINK, DEXTOOLS_LINK, DEXSCREENER_LINK, JUPITER_LINK } from '@/lib/config';
 
 export default function Hero() {
   const [copied, setCopied] = useState(false);
@@ -98,6 +98,23 @@ export default function Hero() {
 
         {/* Bottom Row - DEX Links */}
         <div className="flex flex-col sm:flex-row gap-3 md:gap-4 w-full">
+          <a
+            href={JUPITER_LINK}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-4 sm:px-6 py-2.5 sm:py-3 bg-transparent border-2 border-gray-600 text-white font-semibold text-sm sm:text-base rounded-lg hover:border-[#00ff41] hover:text-[#00ff41] transition-all duration-300 flex items-center justify-center gap-2 sm:gap-3 group flex-1"
+          >
+            <div className="relative w-5 h-5 sm:w-6 sm:h-6 flex-shrink-0 rounded-full overflow-hidden">
+              <Image 
+                src="/jupiterlogo.png" 
+                alt="Jupiter" 
+                fill
+                className="object-cover"
+              />
+            </div>
+            <span>Jupiter</span>
+          </a>
+
           <a
             href={DEXTOOLS_LINK}
             target="_blank"

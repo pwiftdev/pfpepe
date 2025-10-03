@@ -4,6 +4,7 @@ import FloatingComment from '@/components/FloatingComment';
 import Hero from '@/components/Hero';
 import CursorTrail from '@/components/CursorTrail';
 import Loader from '@/components/Loader';
+import MarketCapTracker from '@/components/MarketCapTracker';
 import { useMemo, useState, useEffect } from 'react';
 
 const normieComments = [
@@ -78,6 +79,12 @@ export default function Home() {
   return (
     <>
       <Loader isLoading={isLoading} />
+      
+      {/* Fixed Market Cap Tracker - Top Right */}
+      <div className="fixed top-4 right-4 z-50">
+        <MarketCapTracker />
+      </div>
+
     <main className="relative w-full min-h-screen overflow-x-hidden overflow-y-auto bg-gradient-to-br from-[#0a0e17] via-[#15202b] to-[#0a0e17]">
       {/* Cursor Trail Effect - Hide on mobile */}
       <div className="hidden md:block">

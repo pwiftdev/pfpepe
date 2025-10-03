@@ -11,34 +11,36 @@ interface TrailPoint {
 
 export default function CursorTrail() {
   const [trail, setTrail] = useState<TrailPoint[]>([]);
-  const [idCounter, setIdCounter] = useState(0);
 
   useEffect(() => {
-    let timeoutId: NodeJS.Timeout;
+    let idCounter = 0;
+    const timeouts: NodeJS.Timeout[] = [];
 
     const handleMouseMove = (e: MouseEvent) => {
+      const id = idCounter++;
       const newPoint: TrailPoint = {
         x: e.clientX,
         y: e.clientY,
-        id: idCounter,
+        id,
       };
 
       setTrail((prev) => [...prev, newPoint]);
-      setIdCounter((prev) => prev + 1);
 
       // Remove the point after animation completes
-      timeoutId = setTimeout(() => {
-        setTrail((prev) => prev.filter((p) => p.id !== newPoint.id));
+      const timeoutId = setTimeout(() => {
+        setTrail((prev) => prev.filter((p) => p.id !== id));
       }, 800);
+      
+      timeouts.push(timeoutId);
     };
 
     window.addEventListener('mousemove', handleMouseMove);
 
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
-      clearTimeout(timeoutId);
+      timeouts.forEach(clearTimeout);
     };
-  }, [idCounter]);
+  }, []);
 
   return (
     <div className="fixed inset-0 pointer-events-none z-50">
