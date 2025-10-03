@@ -2,12 +2,14 @@
 
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import { FaXTwitter, FaCopy, FaCheck } from 'react-icons/fa6';
+import { FaXTwitter, FaCopy, FaCheck, FaImage } from 'react-icons/fa6';
 import { useState } from 'react';
 import { CONTRACT_ADDRESS, TICKER, PROJECT_NAME, X_COMMUNITY_LINK, DEXTOOLS_LINK, DEXSCREENER_LINK, JUPITER_LINK } from '@/lib/config';
+import PFPGenerator from './PFPGenerator';
 
 export default function Hero() {
   const [copied, setCopied] = useState(false);
+  const [showPFPGenerator, setShowPFPGenerator] = useState(false);
 
   const handleCopyCA = async () => {
     await navigator.clipboard.writeText(CONTRACT_ADDRESS);
@@ -83,6 +85,14 @@ export default function Hero() {
                 COPY CA
               </>
             )}
+          </button>
+
+          <button
+            onClick={() => setShowPFPGenerator(true)}
+            className="px-6 sm:px-8 py-3 sm:py-4 bg-transparent border-2 border-[#00ff41] text-[#00ff41] font-bold text-base sm:text-lg rounded-lg hover:bg-[#00ff41]/10 transition-all duration-300 flex items-center justify-center gap-2 sm:gap-3 flex-1"
+          >
+            <FaImage className="w-4 h-4 sm:w-5 sm:h-5" />
+            <span className="whitespace-nowrap">PFP GENERATOR</span>
           </button>
 
           <a
@@ -163,6 +173,11 @@ export default function Hero() {
           {CONTRACT_ADDRESS}
         </p>
       </motion.div>
+
+      {/* PFP Generator Modal */}
+      {showPFPGenerator && (
+        <PFPGenerator onClose={() => setShowPFPGenerator(false)} />
+      )}
     </div>
   );
 }
