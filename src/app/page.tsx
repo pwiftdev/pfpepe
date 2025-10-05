@@ -6,6 +6,7 @@ import CursorTrail from '@/components/CursorTrail';
 import Loader from '@/components/Loader';
 import MarketCapTracker from '@/components/MarketCapTracker';
 import NFTModal from '@/components/NFTModal';
+import TeamModal from '@/components/TeamModal';
 import { useMemo, useState, useEffect } from 'react';
 
 const normieComments = [
@@ -51,6 +52,7 @@ const generateRandomLikes = () => {
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
   const [showNFTModal, setShowNFTModal] = useState(false);
+  const [showTeamModal, setShowTeamModal] = useState(false);
 
   // Hide loader after 2.5 seconds
   useEffect(() => {
@@ -102,6 +104,9 @@ export default function Home() {
       {/* NFT Collection Modal */}
       <NFTModal isOpen={showNFTModal} onClose={() => setShowNFTModal(false)} />
       
+      {/* Team Modal */}
+      <TeamModal isOpen={showTeamModal} onClose={() => setShowTeamModal(false)} />
+      
       {/* Fixed Whitepaper Button - Top Left */}
       <div className="fixed top-4 left-4 z-50">
         <a
@@ -126,6 +131,31 @@ export default function Home() {
       <div className="fixed top-4 right-4 z-50">
         <MarketCapTracker />
       </div>
+
+      {/* Fixed Team Button - Bottom Left */}
+      <button
+        onClick={() => setShowTeamModal(true)}
+        className="fixed bottom-6 left-6 z-50 group"
+        title="Meet the Team"
+      >
+        <div className="relative px-5 py-3 bg-gradient-to-br from-[#ff00ff] to-[#cc00cc] rounded-full shadow-lg transition-all duration-300 hover:scale-110 hover:shadow-[0_0_30px_rgba(255,0,255,0.6)] hover:animate-pulse">
+          <span className="text-white font-black text-lg">Team</span>
+        </div>
+      </button>
+
+      {/* Fixed NFT Collection Button - Bottom Right */}
+      <a
+        href="https://launchmynft.io/sol/20452"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="fixed bottom-6 right-6 z-50 group"
+        title="View NFT Collection"
+      >
+        <div className="relative px-5 py-3 bg-gradient-to-br from-[#00ff41] to-[#00cc34] rounded-full shadow-lg transition-all duration-300 hover:scale-110 hover:shadow-[0_0_30px_rgba(0,255,65,0.6)] animate-pulse hover:animate-none">
+          <span className="text-black font-black text-lg">NFTs</span>
+          <div className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full border-2 border-[#0a0e17] animate-bounce" />
+        </div>
+      </a>
 
     <main className="relative w-full min-h-screen overflow-x-hidden overflow-y-auto bg-gradient-to-br from-[#0a0e17] via-[#15202b] to-[#0a0e17]">
       {/* Cursor Trail Effect - Hide on mobile */}
