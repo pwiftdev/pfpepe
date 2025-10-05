@@ -5,6 +5,7 @@ import Hero from '@/components/Hero';
 import CursorTrail from '@/components/CursorTrail';
 import Loader from '@/components/Loader';
 import MarketCapTracker from '@/components/MarketCapTracker';
+import NFTModal from '@/components/NFTModal';
 import { useMemo, useState, useEffect } from 'react';
 
 const normieComments = [
@@ -49,6 +50,7 @@ const generateRandomLikes = () => {
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
+  const [showNFTModal, setShowNFTModal] = useState(false);
 
   // Hide loader after 2.5 seconds
   useEffect(() => {
@@ -58,6 +60,23 @@ export default function Home() {
 
     return () => clearTimeout(timer);
   }, []);
+
+  // Show NFT modal after loader finishes and after a small delay
+  useEffect(() => {
+    if (!isLoading) {
+      // Check if user has seen the modal in this session
+      const hasSeenModal = sessionStorage.getItem('hasSeenNFTModal');
+      
+      if (!hasSeenModal) {
+        const modalTimer = setTimeout(() => {
+          setShowNFTModal(true);
+          sessionStorage.setItem('hasSeenNFTModal', 'true');
+        }, 1000); // Show modal 1 second after loader disappears
+
+        return () => clearTimeout(modalTimer);
+      }
+    }
+  }, [isLoading]);
 
   // Generate comment props once on mount to avoid hydration issues
   const comments = useMemo(() => {
@@ -79,6 +98,9 @@ export default function Home() {
   return (
     <>
       <Loader isLoading={isLoading} />
+      
+      {/* NFT Collection Modal */}
+      <NFTModal isOpen={showNFTModal} onClose={() => setShowNFTModal(false)} />
       
       {/* Fixed Whitepaper Button - Top Left */}
       <div className="fixed top-4 left-4 z-50">
