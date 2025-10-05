@@ -145,7 +145,7 @@ export default function Home() {
 
       {/* Fixed NFT Collection Button - Bottom Right */}
       <a
-        href="https://launchmynft.io/sol/20452"
+        href="https://magiceden.io/marketplace/pumpfun_pepe"
         target="_blank"
         rel="noopener noreferrer"
         className="fixed bottom-6 right-6 z-50 group"

@@ -96,13 +96,13 @@ export default function NFTModal({ isOpen, onClose }: NFTModalProps) {
 
                 {/* CTA Button */}
                 <a
-                  href="https://launchmynft.io/sol/20452"
+                  href="https://magiceden.io/marketplace/pumpfun_pepe"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center justify-center gap-2 w-full px-8 py-4 bg-[#00ff41] hover:bg-[#00cc34] text-black font-bold text-lg rounded-lg transition-all duration-300 shadow-lg hover:shadow-[0_0_30px_rgba(0,255,65,0.5)] hover:scale-105"
                 >
                   <FaRocket />
-                  View Collection on LaunchMyNFT
+                  View Collection on Magic Eden
                 </a>
 
                 {/* Footer Note */}
