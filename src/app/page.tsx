@@ -80,6 +80,26 @@ export default function Home() {
     <>
       <Loader isLoading={isLoading} />
       
+      {/* Fixed Whitepaper Button - Top Left */}
+      <div className="fixed top-4 left-4 z-50">
+        <a
+          href="/Pfp Whitepaper.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="px-6 py-3 bg-transparent border-2 border-[#00ff41] hover:bg-[#00ff41]/10 text-[#00ff41] font-bold rounded-lg shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_rgba(0,255,65,0.5)] flex items-center gap-2 backdrop-blur-sm"
+        >
+          <svg 
+            xmlns="http://www.w3.org/2000/svg" 
+            className="h-5 w-5" 
+            viewBox="0 0 20 20" 
+            fill="currentColor"
+          >
+            <path fillRule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z" clipRule="evenodd" />
+          </svg>
+          Whitepaper
+        </a>
+      </div>
+      
       {/* Fixed Market Cap Tracker - Top Right */}
       <div className="fixed top-4 right-4 z-50">
         <MarketCapTracker />

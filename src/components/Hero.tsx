@@ -106,58 +106,98 @@ export default function Hero() {
           </a>
         </div>
 
-        {/* Bottom Row - DEX Links */}
-        <div className="flex flex-col sm:flex-row gap-3 md:gap-4 w-full">
-          <a
-            href={JUPITER_LINK}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="px-4 sm:px-6 py-2.5 sm:py-3 bg-transparent border-2 border-gray-600 text-white font-semibold text-sm sm:text-base rounded-lg hover:border-[#00ff41] hover:text-[#00ff41] transition-all duration-300 flex items-center justify-center gap-2 sm:gap-3 group flex-1"
-          >
-            <div className="relative w-5 h-5 sm:w-6 sm:h-6 flex-shrink-0 rounded-full overflow-hidden">
-              <Image 
-                src="/jupiterlogo.png" 
-                alt="Jupiter" 
-                fill
-                className="object-cover"
-              />
-            </div>
-            <span>Jupiter</span>
-          </a>
+        {/* Bottom Rows - DEX Links */}
+        <div className="flex flex-col gap-3 md:gap-4 w-full">
+          {/* First Row - 3 buttons */}
+          <div className="flex flex-col sm:flex-row gap-3 md:gap-4 w-full">
+            <a
+              href={JUPITER_LINK}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-4 sm:px-6 py-2.5 sm:py-3 bg-transparent border-2 border-gray-600 text-white font-semibold text-sm sm:text-base rounded-lg hover:border-[#00ff41] hover:text-[#00ff41] transition-all duration-300 flex items-center justify-center gap-2 sm:gap-3 group flex-1"
+            >
+              <div className="relative w-5 h-5 sm:w-6 sm:h-6 flex-shrink-0 rounded-full overflow-hidden">
+                <Image 
+                  src="/jupiterlogo.png" 
+                  alt="Jupiter" 
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <span>Jupiter</span>
+            </a>
 
-          <a
-            href={DEXTOOLS_LINK}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="px-4 sm:px-6 py-2.5 sm:py-3 bg-transparent border-2 border-gray-600 text-white font-semibold text-sm sm:text-base rounded-lg hover:border-[#00ff41] hover:text-[#00ff41] transition-all duration-300 flex items-center justify-center gap-2 sm:gap-3 group flex-1"
-          >
-            <div className="relative w-5 h-5 sm:w-6 sm:h-6 flex-shrink-0">
-              <Image 
-                src="/dextoolslogo.svg" 
-                alt="DexTools" 
-                fill
-                className="object-contain"
-              />
-            </div>
-            <span>DexTools</span>
-          </a>
+            <a
+              href={DEXTOOLS_LINK}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-4 sm:px-6 py-2.5 sm:py-3 bg-transparent border-2 border-gray-600 text-white font-semibold text-sm sm:text-base rounded-lg hover:border-[#00ff41] hover:text-[#00ff41] transition-all duration-300 flex items-center justify-center gap-2 sm:gap-3 group flex-1"
+            >
+              <div className="relative w-5 h-5 sm:w-6 sm:h-6 flex-shrink-0">
+                <Image 
+                  src="/dextoolslogo.svg" 
+                  alt="DexTools" 
+                  fill
+                  className="object-contain"
+                />
+              </div>
+              <span>DexTools</span>
+            </a>
 
-          <a
-            href={DEXSCREENER_LINK}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="px-4 sm:px-6 py-2.5 sm:py-3 bg-transparent border-2 border-gray-600 text-white font-semibold text-sm sm:text-base rounded-lg hover:border-[#00ff41] hover:text-[#00ff41] transition-all duration-300 flex items-center justify-center gap-2 sm:gap-3 group flex-1"
-          >
-            <div className="relative w-5 h-5 sm:w-6 sm:h-6 flex-shrink-0">
-              <Image 
-                src="/dexlogo.jpg" 
-                alt="DexScreener" 
-                fill
-                className="object-contain rounded"
-              />
-            </div>
-            <span>DexScreener</span>
-          </a>
+            <a
+              href={DEXSCREENER_LINK}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-4 sm:px-6 py-2.5 sm:py-3 bg-transparent border-2 border-gray-600 text-white font-semibold text-sm sm:text-base rounded-lg hover:border-[#00ff41] hover:text-[#00ff41] transition-all duration-300 flex items-center justify-center gap-2 sm:gap-3 group flex-1"
+            >
+              <div className="relative w-5 h-5 sm:w-6 sm:h-6 flex-shrink-0">
+                <Image 
+                  src="/dexlogo.jpg" 
+                  alt="DexScreener" 
+                  fill
+                  className="object-contain rounded"
+                />
+              </div>
+              <span>DexScreener</span>
+            </a>
+          </div>
+
+          {/* Second Row - 2 buttons centered */}
+          <div className="flex flex-col sm:flex-row gap-3 md:gap-4 w-full sm:justify-center">
+            <a
+              href="https://www.coingecko.com/en/coins/pumpfun-pepe"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-4 sm:px-6 py-2.5 sm:py-3 bg-transparent border-2 border-gray-600 text-white font-semibold text-sm sm:text-base rounded-lg hover:border-[#00ff41] hover:text-[#00ff41] transition-all duration-300 flex items-center justify-center gap-2 sm:gap-3 group sm:flex-1 sm:max-w-xs"
+            >
+              <div className="relative w-5 h-5 sm:w-6 sm:h-6 flex-shrink-0">
+                <Image 
+                  src="/coingeckologo.png" 
+                  alt="CoinGecko" 
+                  fill
+                  className="object-contain"
+                />
+              </div>
+              <span>CoinGecko</span>
+            </a>
+
+            <a
+              href="https://dex.coinmarketcap.com/token/solana/5TfqNKZbn9AnNtzq8bbkyhKgcPGTfNDc9wNzFrTBpump/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-4 sm:px-6 py-2.5 sm:py-3 bg-transparent border-2 border-gray-600 text-white font-semibold text-sm sm:text-base rounded-lg hover:border-[#00ff41] hover:text-[#00ff41] transition-all duration-300 flex items-center justify-center gap-2 sm:gap-3 group sm:flex-1 sm:max-w-xs"
+            >
+              <div className="relative w-5 h-5 sm:w-6 sm:h-6 flex-shrink-0">
+                <Image 
+                  src="/cmclogo.jpeg" 
+                  alt="CoinMarketCap" 
+                  fill
+                  className="object-contain"
+                />
+              </div>
+              <span>CMC</span>
+            </a>
+          </div>
         </div>
       </motion.div>
 
