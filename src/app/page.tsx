@@ -63,23 +63,6 @@ export default function Home() {
     return () => clearTimeout(timer);
   }, []);
 
-  // Show NFT modal after loader finishes and after a small delay
-  useEffect(() => {
-    if (!isLoading) {
-      // Check if user has seen the modal in this session
-      const hasSeenModal = sessionStorage.getItem('hasSeenNFTModal');
-      
-      if (!hasSeenModal) {
-        const modalTimer = setTimeout(() => {
-          setShowNFTModal(true);
-          sessionStorage.setItem('hasSeenNFTModal', 'true');
-        }, 1000); // Show modal 1 second after loader disappears
-
-        return () => clearTimeout(modalTimer);
-      }
-    }
-  }, [isLoading]);
-
   // Generate comment props once on mount to avoid hydration issues
   const comments = useMemo(() => {
     // Show fewer comments on mobile
