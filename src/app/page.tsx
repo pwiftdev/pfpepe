@@ -115,6 +115,24 @@ export default function Home() {
         <MarketCapTracker />
       </div>
 
+      {/* Fixed MEXC Button - Top Right Below Market Cap */}
+      <a
+        href="https://www.mexc.com/exchange/PFP_USDT"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="fixed top-20 right-4 z-50 group"
+        title="Trade PFP on MEXC"
+      >
+        <div className="relative px-4 py-3 bg-gradient-to-br from-[#00d4ff] to-[#0099cc] rounded-full shadow-lg transition-all duration-300 hover:scale-110 hover:shadow-[0_0_30px_rgba(0,212,255,0.6)] flex items-center gap-2">
+          <img 
+            src="/mexclogo.png" 
+            alt="MEXC" 
+            className="w-5 h-5"
+          />
+          <span className="text-white font-bold text-sm">MEXC</span>
+        </div>
+      </a>
+
       {/* Fixed Team Button - Bottom Left */}
       <button
         onClick={() => setShowTeamModal(true)}
