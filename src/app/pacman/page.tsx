@@ -2,16 +2,22 @@
 
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
-import { FaExpand } from 'react-icons/fa';
+import { FaMobileAlt } from 'react-icons/fa';
 
 export default function PacmanGame() {
   const unityContainerRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const scriptLoadedRef = useRef(false);
-  const unityInstanceRef = useRef<any>(null);
-  const [isFullscreen, setIsFullscreen] = useState(false);
+  const [showMobileWarning, setShowMobileWarning] = useState(false);
 
   useEffect(() => {
+    // Check if user is on mobile device
+    const isMobileDevice = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    if (isMobileDevice) {
+      setShowMobileWarning(true);
+      return; // Don't load Unity on mobile
+    }
+
     if (scriptLoadedRef.current) return;
     scriptLoadedRef.current = true;
 
@@ -97,7 +103,6 @@ export default function PacmanGame() {
             progressBarFull.style.width = 100 * progress + "%";
           }
         }).then((unityInstance: any) => {
-          unityInstanceRef.current = unityInstance;
           if (loadingBar) loadingBar.style.display = "none";
           if (fullscreenButton) {
             fullscreenButton.onclick = () => {
@@ -123,27 +128,46 @@ export default function PacmanGame() {
     };
   }, []);
 
-  const handleFullscreen = () => {
-    if (unityInstanceRef.current) {
-      try {
-        // Unity's SetFullscreen method - parameter 1 means enable fullscreen
-        unityInstanceRef.current.SetFullscreen(1);
-        console.log("Fullscreen triggered");
-      } catch (error) {
-        console.error("Fullscreen error:", error);
-        // Fallback to canvas fullscreen
-        const canvas = canvasRef.current;
-        if (canvas && canvas.requestFullscreen) {
-          canvas.requestFullscreen();
-        }
-      }
-    } else {
-      console.warn("Unity instance not loaded yet");
-    }
-  };
-
   return (
     <div className="relative min-h-screen bg-gradient-to-br from-[#0a0e17] via-[#15202b] to-[#0a0e17] flex flex-col items-center justify-center p-2 sm:p-4">
+      {/* Mobile Warning Modal */}
+      {showMobileWarning && (
+        <div className="fixed inset-0 z-[200] flex items-center justify-center p-4 bg-black/90 backdrop-blur-sm">
+          <div className="relative max-w-md w-full bg-gradient-to-br from-[#0a0e17] via-[#15202b] to-[#0a0e17] border-2 border-[#00ff41] rounded-2xl shadow-[0_0_50px_rgba(0,255,65,0.3)] p-6 sm:p-8">
+            <div className="text-center">
+              {/* Icon */}
+              <div className="mb-4 flex justify-center">
+                <div className="p-4 bg-[#00ff41]/20 rounded-full border-2 border-[#00ff41]">
+                  <FaMobileAlt className="w-12 h-12 text-[#00ff41]" />
+                </div>
+              </div>
+
+              {/* Title */}
+              <h2 className="text-2xl sm:text-3xl font-black text-white mb-3">
+                Fren, the game is currently available only for desktops!
+              </h2>
+
+              {/* Subtitle */}
+              <p className="text-xl font-bold text-[#00ff41] mb-6">
+                Mobile soon! 🎮
+              </p>
+
+              {/* Back Button */}
+              <Link
+                href="/"
+                className="inline-block px-8 py-3 bg-[#00ff41] hover:bg-[#00cc34] text-black font-bold text-lg rounded-lg transition-all duration-300 shadow-lg hover:shadow-[0_0_30px_rgba(0,255,65,0.5)] hover:scale-105"
+              >
+                Back to Home
+              </Link>
+            </div>
+
+            {/* Decorative glow effects */}
+            <div className="absolute top-0 left-0 w-32 h-32 bg-[#00ff41] opacity-20 blur-[100px] rounded-full pointer-events-none" />
+            <div className="absolute bottom-0 right-0 w-32 h-32 bg-[#00ff41] opacity-20 blur-[100px] rounded-full pointer-events-none" />
+          </div>
+        </div>
+      )}
+
       {/* Back to Home Button */}
       <Link 
         href="/"
@@ -190,16 +214,6 @@ export default function PacmanGame() {
         </div>
       </div>
 
-      {/* Fullscreen Button */}
-      <div className="mt-4 sm:mt-6">
-        <button
-          onClick={handleFullscreen}
-          className="px-6 py-3 bg-transparent border-2 border-[#00ff41] hover:bg-[#00ff41]/10 text-[#00ff41] font-bold rounded-lg shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_rgba(0,255,65,0.5)] flex items-center gap-2 backdrop-blur-sm"
-        >
-          <FaExpand className="h-5 w-5" />
-          Fullscreen
-        </button>
-      </div>
     </div>
   );
 }
