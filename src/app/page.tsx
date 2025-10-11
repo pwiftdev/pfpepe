@@ -7,7 +7,9 @@ import Loader from '@/components/Loader';
 import MarketCapTracker from '@/components/MarketCapTracker';
 import NFTModal from '@/components/NFTModal';
 import TeamModal from '@/components/TeamModal';
+import Link from 'next/link';
 import { useMemo, useState, useEffect } from 'react';
+import { FaGamepad } from 'react-icons/fa';
 
 const normieComments = [
   "This sends",
@@ -91,12 +93,12 @@ export default function Home() {
       <TeamModal isOpen={showTeamModal} onClose={() => setShowTeamModal(false)} />
       
       {/* Fixed Whitepaper Button - Top Left */}
-      <div className="fixed top-4 left-4 z-50">
+      <div className="fixed top-4 left-4 z-50 w-[180px]">
         <a
           href="/Pfp Whitepaper.pdf"
           target="_blank"
           rel="noopener noreferrer"
-          className="px-6 py-3 bg-transparent border-2 border-[#00ff41] hover:bg-[#00ff41]/10 text-[#00ff41] font-bold rounded-lg shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_rgba(0,255,65,0.5)] flex items-center gap-2 backdrop-blur-sm"
+          className="w-full px-6 py-3 bg-transparent border-2 border-[#00ff41] hover:bg-[#00ff41]/10 text-[#00ff41] font-bold rounded-lg shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_rgba(0,255,65,0.5)] flex items-center justify-center gap-2 backdrop-blur-sm"
         >
           <svg 
             xmlns="http://www.w3.org/2000/svg" 
@@ -108,6 +110,17 @@ export default function Home() {
           </svg>
           Whitepaper
         </a>
+      </div>
+
+      {/* Fixed Play Game Button - Top Left Below Whitepaper */}
+      <div className="fixed top-20 left-4 z-50 w-[180px]">
+        <Link
+          href="/pacman"
+          className="w-full px-6 py-3 bg-transparent border-2 border-purple-500 hover:bg-purple-500/10 text-purple-400 font-bold rounded-lg shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_rgba(147,51,234,0.5)] flex items-center justify-center gap-2 backdrop-blur-sm"
+        >
+          <FaGamepad className="h-5 w-5" />
+          Play Game
+        </Link>
       </div>
       
       {/* Fixed Market Cap Tracker - Top Right */}
