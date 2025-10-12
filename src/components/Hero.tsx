@@ -162,13 +162,13 @@ export default function Hero() {
             </a>
           </div>
 
-          {/* Second Row - 2 buttons centered */}
-          <div className="flex flex-col sm:flex-row gap-3 md:gap-4 w-full sm:justify-center">
+          {/* Second Row - 3 buttons */}
+          <div className="flex flex-col sm:flex-row gap-3 md:gap-4 w-full">
             <a
               href="https://www.coingecko.com/en/coins/pumpfun-pepe"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-4 sm:px-6 py-2.5 sm:py-3 bg-transparent border-2 border-gray-600 text-white font-semibold text-sm sm:text-base rounded-lg hover:border-[#00ff41] hover:text-[#00ff41] transition-all duration-300 flex items-center justify-center gap-2 sm:gap-3 group sm:flex-1 sm:max-w-xs"
+              className="px-4 sm:px-6 py-2.5 sm:py-3 bg-transparent border-2 border-gray-600 text-white font-semibold text-sm sm:text-base rounded-lg hover:border-[#00ff41] hover:text-[#00ff41] transition-all duration-300 flex items-center justify-center gap-2 sm:gap-3 group flex-1"
             >
               <div className="relative w-5 h-5 sm:w-6 sm:h-6 flex-shrink-0">
                 <Image 
@@ -185,7 +185,7 @@ export default function Hero() {
               href="https://dex.coinmarketcap.com/token/solana/5TfqNKZbn9AnNtzq8bbkyhKgcPGTfNDc9wNzFrTBpump/"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-4 sm:px-6 py-2.5 sm:py-3 bg-transparent border-2 border-gray-600 text-white font-semibold text-sm sm:text-base rounded-lg hover:border-[#00ff41] hover:text-[#00ff41] transition-all duration-300 flex items-center justify-center gap-2 sm:gap-3 group sm:flex-1 sm:max-w-xs"
+              className="px-4 sm:px-6 py-2.5 sm:py-3 bg-transparent border-2 border-gray-600 text-white font-semibold text-sm sm:text-base rounded-lg hover:border-[#00ff41] hover:text-[#00ff41] transition-all duration-300 flex items-center justify-center gap-2 sm:gap-3 group flex-1"
             >
               <div className="relative w-5 h-5 sm:w-6 sm:h-6 flex-shrink-0">
                 <Image 
@@ -196,6 +196,23 @@ export default function Hero() {
                 />
               </div>
               <span>CMC</span>
+            </a>
+
+            <a
+              href="https://memedepot.com/d/pumpfun-pepe"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-4 sm:px-6 py-2.5 sm:py-3 bg-transparent border-2 border-gray-600 text-white font-semibold text-sm sm:text-base rounded-lg hover:border-[#00ff41] hover:text-[#00ff41] transition-all duration-300 flex items-center justify-center gap-2 sm:gap-3 group flex-1"
+            >
+              <svg 
+                xmlns="http://www.w3.org/2000/svg" 
+                className="w-5 h-5 sm:w-6 sm:h-6" 
+                viewBox="0 0 24 24" 
+                fill="currentColor"
+              >
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+              </svg>
+              <span>Meme Depot</span>
             </a>
           </div>
         </div>
