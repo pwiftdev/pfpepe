@@ -3,6 +3,7 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaDownload, FaXmark, FaShuffle } from 'react-icons/fa6';
 import { useState, useRef, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 
 interface PFPGeneratorProps {
   onClose: () => void;
@@ -213,10 +214,16 @@ export default function PFPGenerator({ onClose }: PFPGeneratorProps) {
     }
   };
 
-  return (
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const modalContent = (
     <AnimatePresence>
       <motion.div
-        className="fixed inset-0 bg-black/90 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+        className="fixed inset-0 bg-black/90 backdrop-blur-sm z-[9999] flex items-center justify-center p-4"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
@@ -391,4 +398,8 @@ export default function PFPGenerator({ onClose }: PFPGeneratorProps) {
       </motion.div>
     </AnimatePresence>
   );
+
+  if (!mounted) return null;
+
+  return createPortal(modalContent, document.body);
 }

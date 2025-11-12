@@ -93,56 +93,75 @@ export default function Home() {
       <TeamModal isOpen={showTeamModal} onClose={() => setShowTeamModal(false)} />
       
       {/* Fixed Whitepaper Button - Top Left */}
-      <div className="fixed top-4 left-4 z-50 w-[180px]">
+      <div className="fixed top-2 left-2 sm:top-4 sm:left-4 z-50 w-[120px] sm:w-[180px]">
         <a
           href="/Pfp Whitepaper.pdf"
           target="_blank"
           rel="noopener noreferrer"
-          className="w-full px-6 py-3 bg-transparent border-2 border-[#00ff41] hover:bg-[#00ff41]/10 text-[#00ff41] font-bold rounded-lg shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_rgba(0,255,65,0.5)] flex items-center justify-center gap-2 backdrop-blur-sm"
+          className="w-full px-3 py-1.5 sm:px-6 sm:py-3 bg-transparent border-2 border-[#00ff41] hover:bg-[#00ff41]/10 text-[#00ff41] font-bold text-xs sm:text-base rounded-lg shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_rgba(0,255,65,0.5)] flex items-center justify-center gap-1 sm:gap-2 backdrop-blur-sm"
         >
           <svg 
             xmlns="http://www.w3.org/2000/svg" 
-            className="h-5 w-5" 
+            className="h-3 w-3 sm:h-5 sm:w-5" 
             viewBox="0 0 20 20" 
             fill="currentColor"
           >
             <path fillRule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z" clipRule="evenodd" />
           </svg>
-          Whitepaper
+          <span className="hidden sm:inline">Whitepaper</span>
+          <span className="sm:hidden">Paper</span>
         </a>
       </div>
 
       {/* Fixed Play Game Button - Top Left Below Whitepaper */}
-      <div className="fixed top-20 left-4 z-50 w-[180px]">
+      <div className="fixed top-12 left-2 sm:top-20 sm:left-4 z-50 w-[120px] sm:w-[180px]">
         <Link
           href="/pacman"
-          className="w-full px-6 py-3 bg-transparent border-2 border-purple-500 hover:bg-purple-500/10 text-purple-400 font-bold rounded-lg shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_rgba(147,51,234,0.5)] flex items-center justify-center gap-2 backdrop-blur-sm"
+          className="w-full px-3 py-1.5 sm:px-6 sm:py-3 bg-transparent border-2 border-purple-500 hover:bg-purple-500/10 text-purple-400 font-bold text-xs sm:text-base rounded-lg shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_rgba(147,51,234,0.5)] flex items-center justify-center gap-1 sm:gap-2 backdrop-blur-sm"
         >
-          <FaGamepad className="h-5 w-5" />
-          Play Game
+          <FaGamepad className="h-3 w-3 sm:h-5 sm:w-5" />
+          <span className="hidden sm:inline">Play Game</span>
+          <span className="sm:hidden">Game</span>
         </Link>
       </div>
       
       {/* Fixed Market Cap Tracker - Top Right */}
-      <div className="fixed top-4 right-4 z-50">
+      <div className="fixed top-2 right-2 sm:top-4 sm:right-4 z-50">
         <MarketCapTracker />
       </div>
 
-      {/* Fixed MEXC Button - Top Right Below Market Cap */}
+      {/* Fixed Moonshot Button - Top Right Below Market Cap */}
+      <a
+        href="https://moonshot.com/5TfqNKZbn9AnNtzq8bbkyhKgcPGTfNDc9wNzFrTBpump"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="fixed top-12 right-2 sm:top-20 sm:right-4 z-50 group"
+        title="View on Moonshot"
+      >
+        <div className="relative px-2 py-1.5 sm:px-4 sm:py-3 h-[28px] sm:h-[44px] bg-gray-800 rounded-full shadow-lg transition-all duration-300 hover:scale-110 hover:shadow-[0_0_30px_rgba(107,114,128,0.6)] flex items-center justify-center gap-1 sm:gap-2">
+          <img 
+            src="/moonshot_light.png" 
+            alt="Moonshot" 
+            className="h-3 w-auto sm:h-5"
+          />
+        </div>
+      </a>
+
+      {/* Fixed MEXC Button - Top Right Below Moonshot */}
       <a
         href="https://www.mexc.com/exchange/PFP_USDT"
         target="_blank"
         rel="noopener noreferrer"
-        className="fixed top-20 right-4 z-50 group"
+        className="fixed top-[88px] right-2 sm:top-36 sm:right-4 z-50 group"
         title="Trade PFP on MEXC"
       >
-        <div className="relative px-4 py-3 bg-gradient-to-br from-[#00d4ff] to-[#0099cc] rounded-full shadow-lg transition-all duration-300 hover:scale-110 hover:shadow-[0_0_30px_rgba(0,212,255,0.6)] flex items-center gap-2">
+        <div className="relative px-2 py-1.5 sm:px-4 sm:py-3 h-[28px] sm:h-[44px] bg-gradient-to-br from-[#00d4ff] to-[#0099cc] rounded-full shadow-lg transition-all duration-300 hover:scale-110 hover:shadow-[0_0_30px_rgba(0,212,255,0.6)] flex items-center justify-center gap-1 sm:gap-2">
           <img 
             src="/mexclogo.png" 
             alt="MEXC" 
-            className="w-5 h-5"
+            className="w-3 h-3 sm:w-5 sm:h-5"
           />
-          <span className="text-white font-bold text-sm">MEXC</span>
+          <span className="text-white font-bold text-xs sm:text-sm">MEXC</span>
         </div>
       </a>
 
